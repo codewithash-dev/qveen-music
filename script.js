@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var modalNext = document.querySelector('.moments-modal-nav--next');
   var modalLike = document.querySelector('.moments-modal-like');
   var modalLikeCount = document.querySelector('.moments-modal-like-count');
+  var scrollTopBtn = document.querySelector('.scroll-top-btn');
   var likedSet = new Set();
   var currentIndex = 0;
 
@@ -143,6 +144,17 @@ document.addEventListener('DOMContentLoaded', function () {
       stepModal(1);
     }
   });
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', function () {
+      var shouldShow = window.scrollY > 220;
+      scrollTopBtn.classList.toggle('is-visible', shouldShow);
+    });
+  }
 
   updateLikeUi(currentIndex);
 });
