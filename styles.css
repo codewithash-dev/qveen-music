@@ -114,9 +114,13 @@ main {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #2a1a2e 0%, #1a1525 40%, #151a2a 100%);
+  background-color: #1a1525;
+  background-image:
+    linear-gradient(rgba(10, 8, 18, 0.42), rgba(10, 8, 18, 0.42)),
+    url("assets/hero-bg.png");
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /* Add your hero image: .hero-bg { background-image: url('hero.jpg'); background-size: cover; background-position: center; } */
@@ -216,16 +220,21 @@ main {
   flex: 1 1 0;
   min-width: 0;
   aspect-ratio: 1;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   display: block;
 }
 
+.cover-item img,
 .cover-img {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+.cover-img {
   background: linear-gradient(145deg, #3a3540 0%, #2a2530 100%);
 }
 
@@ -268,6 +277,11 @@ main {
   fill: currentColor;
 }
 
+.stream-icon--soundcloud svg {
+  width: 32px;
+  height: 32px;
+}
+
 .music-quote {
   text-align: right;
   max-width: 420px;
@@ -290,30 +304,40 @@ main {
 
 /* ----- Bio section: dark — left: title + icons | center: portrait | right: long bio ----- */
 .intro--dark {
-  background: #1a1a1a;
+  background: #060606;
   color: var(--text-on-dark);
 }
 
 .bio-section {
-  padding: 4rem 2rem 5rem;
+  padding: 2.4rem 2rem 1.2rem;
+  min-height: 300px;
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 46%, rgba(0, 0, 0, 0.6) 100%),
+    url("assets/bio-portrait-qveen.png");
+  background-size: cover;
+  background-position: center 42%;
+  background-repeat: no-repeat;
 }
 
 .bio-split {
   display: grid;
-  grid-template-columns: 1fr auto 1.15fr;
-  gap: 2.5rem 3rem;
-  max-width: 1200px;
+  grid-template-columns: 1fr;
+  gap: 0.95rem;
+  max-width: 980px;
   margin: 0 auto;
   align-items: start;
 }
 
 .bio-left {
-  padding-top: 0.5rem;
+  padding-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .bio-title {
-  margin: 0 0 1.25rem;
-  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  margin: 0 0 0.8rem;
+  font-size: clamp(1.2rem, 2.2vw, 2.55rem);
   font-weight: 700;
   color: var(--text-on-dark);
   letter-spacing: -0.02em;
@@ -322,7 +346,7 @@ main {
 
 .bio-social {
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   align-items: center;
 }
 
@@ -339,59 +363,74 @@ main {
 }
 
 .bio-social-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
 }
 
-.bio-center {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
 .bio-portrait {
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 3 / 4;
-  background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
-  border-radius: 4px;
-  filter: grayscale(1);
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.06);
+  display: none;
 }
 
 /* Replace with <img> or background-image for your B&W portrait */
 
 .bio-right p {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.bio-right {
+  max-width: 48ch;
+}
+
+.bio-right p + p {
+  margin-top: 0.22rem;
+}
+
+.bio-right p:last-child {
+  margin-bottom: 0;
 }
 
 /* ----- Blue gradient section: hand overlay + two columns ----- */
 .intro--blue {
-  background: linear-gradient(180deg, #2d1b4e 0%, #251a40 35%, #1f1538 70%, #2a1a4a 100%);
+  background: #1b3350;
   color: var(--text-on-dark);
 }
 
 .quote-section {
   position: relative;
-  padding: 4rem 2rem 5rem;
+  padding: 1.8rem 2rem 2rem;
   overflow: hidden;
+  min-height: 430px;
+}
+
+.quote-section::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background:
+    linear-gradient(180deg, rgba(13, 35, 58, 0.58) 0%, rgba(16, 47, 74, 0.44) 56%, rgba(27, 77, 117, 0.34) 100%),
+    url("assets/quote-bg-crown.png");
+  background-size: cover;
+  background-position: 34% center;
+  background-repeat: no-repeat;
+  filter: blur(2.6px);
+  transform: scale(1.03);
+  z-index: 0;
+}
+
+.quote-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 29, 52, 0.24) 0%, rgba(13, 22, 42, 0.2) 100%);
+  z-index: 0;
 }
 
 .quote-section-hand {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 42%;
-  max-width: 480px;
-  height: 85%;
-  min-height: 320px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath fill='%23000' fill-opacity='0.25' d='M120 280 L120 180 L160 140 L180 100 L200 60 L200 0 L0 0 L0 300 L120 280 Z'/%3E%3C/svg%3E") no-repeat bottom right;
-  background-size: contain;
-  pointer-events: none;
+  display: none;
 }
 
 /* Replace .quote-section-hand with an img or background-image of hand holding sunglasses */
@@ -399,23 +438,27 @@ main {
 .quote-section-inner {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
 .quote-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2.7rem;
   align-items: start;
 }
 
 .quote-split-text p {
-  margin: 0 0 1rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
   text-align: left;
+}
+
+.quote-split-text p + p {
+  margin-top: 0.25rem;
 }
 
 .quote-split-text p:last-child {
@@ -425,7 +468,13 @@ main {
 .quote-split-right {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  margin-top: 0.1rem;
+  padding-left: 0.7rem;
+}
+
+.quote-split-right .quote-split-text {
+  margin-top: 1rem;
 }
 
 .quote-split-quote {
@@ -433,27 +482,27 @@ main {
 }
 
 .quote-split-quote blockquote {
-  margin: 0 0 0.4rem;
-  font-size: clamp(1.6rem, 2.8vw, 2.35rem);
-  font-weight: 700;
+  margin: 0 0 0.18rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 600;
   font-style: italic;
   color: var(--text-on-dark);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .quote-split-quote cite {
-  font-size: 0.9rem;
+  font-size: 0.72rem;
   font-style: normal;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.84);
 }
 
 .contact-block {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .contact-block p {
-  margin: 0.2rem 0;
-  font-size: 0.95rem;
+  margin: 0.12rem 0;
+  font-size: 0.76rem;
   color: rgba(255, 255, 255, 0.92);
 }
 
@@ -511,31 +560,150 @@ main {
   width: 200px;
   height: 300px;
   scroll-snap-align: start;
-  background: linear-gradient(145deg, #e5e5e5 0%, #d0d0d0 100%);
+  background: #d7d7d7;
   border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.moments-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.moments-like-btn {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.moments-slide:hover .moments-like-btn,
+.moments-slide:focus-visible .moments-like-btn,
+.moments-slide.is-liked .moments-like-btn {
+  opacity: 1;
+}
+
+.moments-slide.is-liked .moments-like-btn {
+  color: #e6293f;
 }
 
 .moments-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border: none;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
+  background: transparent;
   cursor: pointer;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
   font-size: 0;
   z-index: 2;
 }
 
 .moments-arrow--right {
   right: 0.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23333'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23a0a0a0'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.75' d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 22px;
+  background-size: 28px;
+}
+
+.moments-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2;
+  z-index: 50;
+}
+
+.moments-modal.is-open {
+  display: flex;
+}
+
+.moments-modal-image-wrap {
+  width: min(42vw, 360px);
+  height: min(78vh, 700px);
+}
+
+.moments-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.moments-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  border: 0;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  color: #6f6f6f;
+  cursor: pointer;
+}
+
+.moments-modal-top {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #6f6f6f;
+  font-size: 0.9rem;
+}
+
+.moments-modal-like {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.moments-modal-like.is-liked {
+  color: #e6293f;
+}
+
+.moments-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: #7a7a7a;
+  font-size: 2.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+}
+
+.moments-modal-nav--prev {
+  left: 2rem;
+}
+
+.moments-modal-nav--next {
+  right: 2rem;
 }
 
 .moments-quote-block {
@@ -563,7 +731,7 @@ main {
 
 /* ----- Playlists: heading + Spotify/Apple Music (left/center) + 6 cards ----- */
 .playlists-section {
-  padding: 3rem 2rem 5rem;
+  padding: 2.2rem 2rem 3.2rem;
   background: #ffffff;
 }
 
@@ -572,21 +740,23 @@ main {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .playlists-heading {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-light);
+  font-size: 2.7rem;
+  font-weight: 600;
+  color: #5f5f5f;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .playlists-service-icons {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .playlist-service-icon {
@@ -594,6 +764,11 @@ main {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
+  padding: 0 0.6rem;
+  height: 34px;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 1px solid #ececec;
   text-decoration: none;
   transition: opacity 0.2s;
 }
@@ -603,53 +778,43 @@ main {
 }
 
 .playlist-service-icon--spotify {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #1DB954;
-  color: #000;
+  color: #1DB954;
 }
 
 .playlist-service-icon--spotify svg {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
 }
 
 .playlist-service-icon--apple {
-  padding: 0 0.5rem;
-  height: 36px;
-  border-radius: 6px;
-  background: #000;
-  color: #fff;
+  color: #000;
 }
 
 .playlist-service-icon--apple svg {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 .playlist-service-label {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .playlists-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1rem;
   justify-content: space-between;
 }
 
 .playlist-card {
-  flex: 0 0 calc((100% - 5 * 1.25rem) / 6);
-  min-width: 140px;
+  flex: 0 0 calc((100% - 5 * 1rem) / 6);
+  min-width: 120px;
   display: block;
-  background: #2c2c2c;
-  border: 1px solid #3a3a3a;
-  border-radius: 6px;
-  overflow: hidden;
-  color: var(--text-on-dark);
+  background: transparent;
+  border: 0;
+  color: #3d3d3d;
   transition: transform 0.2s;
 }
 
@@ -658,22 +823,49 @@ main {
 }
 
 .playlist-card-img {
+  position: relative;
   aspect-ratio: 1;
+  border-radius: 5px;
+  overflow: hidden;
   background: linear-gradient(145deg, #3a3540 0%, #252530 100%);
 }
 
+.playlist-card-img::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+.playlist-card-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .playlist-card-title {
-  margin: 0.75rem 1rem 0.2rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-on-dark);
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.45rem;
+  margin: 0;
+  font-size: clamp(1.25rem, 1.65vw, 2.2rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  z-index: 1;
 }
 
 .playlist-card-desc {
-  margin: 0 1rem 1rem;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.35;
+  margin: 0.45rem 0 0;
+  font-size: 0.72rem;
+  color: #3e3e3e;
+  line-height: 1.2;
 }
 
 /* ----- Vertical social (right) ----- */
@@ -734,7 +926,7 @@ main {
 
   .bio-split {
     grid-template-columns: 1fr;
-    grid-template-areas: "title" "portrait" "bio";
+    grid-template-areas: "title" "bio";
     gap: 2rem;
   }
 
@@ -742,17 +934,12 @@ main {
     grid-area: title;
   }
 
-  .bio-center {
-    grid-area: portrait;
-  }
-
   .bio-right {
     grid-area: bio;
   }
 
   .bio-portrait {
-    max-width: 280px;
-    margin: 0 auto;
+    display: none;
   }
 
   .quote-split {
